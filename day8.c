@@ -1,4 +1,4 @@
-//compare the triplets
+//grading students
 // #include <assert.h>
 // #include <ctype.h>
 // #include <limits.h>
@@ -13,17 +13,14 @@
 // char* readline();
 // char* ltrim(char*);
 // char* rtrim(char*);
-// char** split_string(char*);
 
 // int parse_int(char*);
 
 // /*
-//  * Complete the 'compareTriplets' function below.
+//  * Complete the 'gradingStudents' function below.
 //  *
 //  * The function is expected to return an INTEGER_ARRAY.
-//  * The function accepts following parameters:
-//  *  1. INTEGER_ARRAY a
-//  *  2. INTEGER_ARRAY b
+//  * The function accepts INTEGER_ARRAY grades as parameter.
 //  */
 
 // /*
@@ -53,43 +50,32 @@
 //  * }
 //  *
 //  */
-// int* compareTriplets(int a_count, int* a, int b_count, int* b, int* result_count) 
-// {
-    
+// int* gradingStudents(int grades_count, int* grades, int* result_count) {
+
 // }
 
 // int main()
 // {
 //     FILE* fptr = fopen(getenv("OUTPUT_PATH"), "w");
 
-//     char** a_temp = split_string(rtrim(readline()));
+//     int grades_count = parse_int(ltrim(rtrim(readline())));
 
-//     int* a = malloc(3 * sizeof(int));
+//     int* grades = malloc(grades_count * sizeof(int));
 
-//     for (int i = 0; i < 3; i++) {
-//         int a_item = parse_int(*(a_temp + i));
+//     for (int i = 0; i < grades_count; i++) {
+//         int grades_item = parse_int(ltrim(rtrim(readline())));
 
-//         *(a + i) = a_item;
-//     }
-
-//     char** b_temp = split_string(rtrim(readline()));
-
-//     int* b = malloc(3 * sizeof(int));
-
-//     for (int i = 0; i < 3; i++) {
-//         int b_item = parse_int(*(b_temp + i));
-
-//         *(b + i) = b_item;
+//         *(grades + i) = grades_item;
 //     }
 
 //     int result_count;
-//     int* result = compareTriplets(3, a, 3, b, &result_count);
+//     int* result = gradingStudents(grades_count, grades, &result_count);
 
 //     for (int i = 0; i < result_count; i++) {
 //         fprintf(fptr, "%d", *(result + i));
 
 //         if (i != result_count - 1) {
-//             fprintf(fptr, " ");
+//             fprintf(fptr, "\n");
 //         }
 //     }
 
@@ -188,27 +174,6 @@
 //     return str;
 // }
 
-// char** split_string(char* str) {
-//     char** splits = NULL;
-//     char* token = strtok(str, " ");
-
-//     int spaces = 0;
-
-//     while (token) {
-//         splits = realloc(splits, sizeof(char*) * ++spaces);
-
-//         if (!splits) {
-//             return splits;
-//         }
-
-//         splits[spaces - 1] = token;
-
-//         token = strtok(NULL, " ");
-//     }
-
-//     return splits;
-// }
-
 // int parse_int(char* str) {
 //     char* endptr;
 //     int value = strtol(str, &endptr, 10);
@@ -223,16 +188,23 @@
 #include<stdio.h>
 int main()
 {
-    int a[3], b[3], a1=0, b1=0, i;
-    scanf("%d %d %d", &a[0], &a[1], &a[2]);
-    scanf("%d %d %d", &b[0], &b[1], &b[2]);
-    for(i=0; i<3; i++)
+    int i,n, g, ig;
+    scanf("%d",&n);
+    for(i=0; i<n; i++)
     {
-        if(a[i]>b[i])
-        a1++;
-        if(a[i]<b[i])
-        b1++;
+        scanf("%d", &g);
+        if(g<38)
+        printf("%d\n", g);
+        else
+        {
+            ig=(g/5+1)*5;
+            if(ig-g<3)
+            printf("%d\n",ig);
+            else
+            {
+                printf("%d\n",g);
+            }
+        }
     }
-    printf("%d %d", a1, b1);
     return 0;
 }
